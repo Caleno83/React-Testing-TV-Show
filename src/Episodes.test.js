@@ -9,14 +9,17 @@ test("Episodes shows data when rendered with episodes", () => {
   );
   //to check that there are not episodes when the component mounts
   const initialEpisodes = queryAllByTestId(/episodes/i);
+
+  //rerender the component with episodes data
+  rerender(<Episodes error="" episodes={data} />);
+
+  //Act
+  const episodes = getAllByTestId(/episodes/i);
+
+  //Assert
   expect(initialEpisodes).toHaveLength(0);
   expect(initialEpisodes).toEqual([]);
 
-  //Act
-  //rerender the component with episodes data
-  rerender(<Episodes error="" episodes={data} />);
-  const episodes = getAllByTestId(/episodes/i);
-  //Assert
   expect(episodes).toHaveLength(5);
 });
 
